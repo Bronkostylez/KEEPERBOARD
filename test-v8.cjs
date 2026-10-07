@@ -32,7 +32,7 @@ await p.click('[data-rate="2"]');await p.click('#previewPlay');await p.waitForTi
 await p.click('[data-rate="1"]');await p.fill('#previewScrub','2000').catch(()=>{});await p.evaluate(()=>{const s=$('previewScrub');s.value=3000;s.dispatchEvent(new Event('input',{bubbles:true}));});assert.equal(await p.evaluate(()=>Math.round(detailTL.time/100)),30);
 await p.click('[data-preview-step="1"]');await p.waitForTimeout(400);assert.equal(await p.evaluate(()=>$('detailDialog').dataset.step),'1');
 // cards: visible scenes run a full cycle, at most three at once
-await p.click('#detailClose');await p.waitForTimeout(900);
+await p.click('#detailClose');await p.evaluate(()=>document.querySelector('#cards .pitch-scene').scrollIntoView({block:'center',behavior:'instant'}));await p.waitForTimeout(1400);
 const cards=await p.evaluate(()=>({tls:cardTL.size,running:[...cardTL.values()].filter(t=>t.playing).length,connected:[...cardTL.keys()].every(s=>s.isConnected)}));assert(cards.tls>=1&&cards.tls<=3&&cards.connected,JSON.stringify(cards));
 // performance under 4x CPU throttle: detail playing and library scrolling
 const cdp=await c.newCDPSession(p);await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});
