@@ -25,3 +25,8 @@ const simpleCards=renderCards;renderCards=function(){simpleCards();const parts=[
 const quickRender=render;render=function(){quickRender();$('quickTrain').disabled=!plan().blocks.length;};
 const pt=document.createElement('p');pt.className='simple-tip';pt.textContent='Minuten direkt ändern. Pfeile ordnen die Übungen. Weitere Optionen stecken unter Planeinstellungen und Export.';$('blocks').before(pt);
 render();
+// V14: material checklist and keyboard/touch navigation for the local editor.
+const checklist=document.createElement('details');checklist.id='materialChecklist';checklist.innerHTML='<summary>Material abhaken</summary><div id="checkItems"></div><p class="subtle">Checkliste für jetzt, kein gespeichertes Inventar. Mengen nach jeder Planänderung neu prüfen.</p>';$('equipmentSummary').after(checklist);
+const checkRender=render;render=function(){checkRender();$('checkItems').innerHTML=Object.entries(requirements()).map(([n,c],i)=>`<label class="toggle-row"><input type="checkbox" style="width:auto"> ${materialType(n)[1]} ${c} ${esc(n)}</label>`).join('')||'Noch keine Übungen.';};
+const profileSafety=document.createElement('p');profileSafety.className='simple-tip';profileSafety.textContent='Backup sichert jetzt auch eigene Animationen und Varianten. Browserdaten nicht löschen. Ein Backup enthält keine Merkliste oder Anzeigeeinstellungen.';$('export').before(profileSafety);
+render();
