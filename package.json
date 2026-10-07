@@ -1,9 +1,11 @@
 {
   "name": "trainr",
-  "version": "0.3.0",
+  "version": "0.6.0",
   "scripts": {
     "test": "node test.cjs",
-    "start": "node serve.cjs"
+    "start": "node serve.cjs",
+    "test:v5": "node test-v5.cjs",
+    "test:v6": "node test-v6.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0"
