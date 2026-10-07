@@ -1,5 +1,5 @@
-const CACHE='keeperboard-v7.0.0';
-const FILES=['./','./index.html','./app.js?v=7.0.0','./app-ui.js?v=7.0.0','./app-ui.css?v=7.0.0','./ui-v4.js?v=7.0.0','./ui-v4.css?v=7.0.0','./ui-v5.js?v=7.0.0','./ui-v5.css?v=7.0.0','./drill-scenes.js?v=7.0.0','./ui-v6.js?v=7.0.0','./ui-v6.css?v=7.0.0','./ui-v7.js?v=7.0.0','./ui-v7.css?v=7.0.0','./drills.js?v=7.0.0','./manifest.webmanifest','./icon.svg'];
+const CACHE='keeperboard-v8.0.0';
+const FILES=['./','./index.html','./app.js?v=8.0.0','./app-ui.js?v=8.0.0','./app-ui.css?v=8.0.0','./ui-v4.js?v=8.0.0','./ui-v4.css?v=8.0.0','./ui-v5.js?v=8.0.0','./ui-v5.css?v=8.0.0','./drill-scenes.js?v=8.0.0','./ui-v6.js?v=8.0.0','./ui-v6.css?v=8.0.0','./ui-v7.js?v=8.0.0','./ui-v7.css?v=8.0.0','./ui-v8.js?v=8.0.0','./ui-v8.css?v=8.0.0','./scene-motion.js?v=8.0.0','./drills.js?v=8.0.0','./manifest.webmanifest','./icon.svg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(async()=>{const keys=await caches.keys();if(keys.some(k=>/^keeperboard-v[1-6][.]/.test(k)))await self.skipWaiting();})));
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting();});
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('keeperboard-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
