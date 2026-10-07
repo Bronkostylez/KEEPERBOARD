@@ -4,8 +4,11 @@ A local football training planner for outfield coaches, goalkeeper coaches and m
 
 The repository still has its original KEEPERBOARD name. The app is TRAINR. It is private and **not deployed**: the repository link is source code, not a working phone app.
 
-## Stage 2
+## Stage 3: app interface
 
+- Today screen with the selected session, one-tap planning and training. Four bottom navigation tabs: Today, Drills, Plan and Training. Large controls, short view transitions and reduced-motion support.
+- Compact drill cards; advanced filters, session settings and exports open when needed. Desktop keeps the library and planner side by side for drag and drop.
+- A separate training screen with a large timer, progress bar, setup and coaching notes. Switching views does not pause or reset the timer.
 - Three-step onboarding: coach type, Bambini through adult men, training days and start/end times. Edit the profile later.
 - 36 original short drill adaptations, with category, age bands, players per group, equipment quantities, coaching and source links. Field, goalkeeper and mixed games.
 - Search plus category, coach-type and age filters. Add your own drills locally.
@@ -43,7 +46,7 @@ Bambini should have broad playful ball experiences, not fixed goalkeeper special
 
 Data stays in localStorage on this browser and origin; clearing data, storage eviction or private browsing can erase it. Back up regularly. No sync or encryption promise. No personal names in free-text fields. Source websites open only when selected.
 
-Stage 2 uses the `trainr-v2` storage key. Stage 1 browser data is left untouched under `keeperboard-v1`; it is not migrated automatically and Stage 1 backups are rejected rather than silently converted with changed player-count meanings.
+Stages 2 and 3 use the `trainr-v2` storage key. Stage 1 browser data is left untouched under `keeperboard-v1`; it is not migrated automatically and Stage 1 backups are rejected rather than silently converted with changed player-count meanings.
 
 The service worker caches app assets only. Increase its version after an asset update. A timer may not sound while the screen is locked, browser suspended or app closed. It is not a background alarm; changing the system clock affects its deadline.
 
@@ -56,10 +59,10 @@ npm test
 
 The Playwright smoke suite uses Chrome at `/usr/bin/google-chrome`; set `CHROME_PATH` on another system. Screenshots/PDF go to `/downloads` in the build environment; change paths for your local machine.
 
-Tested on Chrome/Linux: onboarding including invalid day/time input, all 36 drills, profile/category/age/search filters, ranking reasons, group and material counts, duration overrun, actual drag/drop add and reorder, button fallback, timer pause/next, own exercises, multiple plans, persistence, text/CSV/PDF output, validated backup/restore/rejection, offline reload and changes, and 390px mobile/1280px desktop views. No JavaScript page errors. Onboarding, desktop, mobile planner and PDF were visually inspected.
+Tested on Chrome/Linux: onboarding including invalid day/time input, all 36 drills, profile/category/age/search filters, ranking reasons, group and material counts, duration overrun, actual drag/drop add and reorder, button fallback, timer pause/next, own exercises, multiple plans, persistence, text/CSV/PDF output, validated backup/restore/rejection, offline reload and changes, and 390px mobile/1280px desktop views. No JavaScript page errors. Onboarding, Today, drill cards, mobile planner, training screen, desktop and PDF were visually inspected. The small field motifs on drill cards are decorative, not tactical drill diagrams. Stage 2 backups and stored sessions remain compatible.
 
 Not tested on a physical phone, Safari installation, Windows, screen-locked sound, or deployed HTTPS. No claim of a live/installable phone link yet.
 
 ## Structure
 
-`index.html` owns layout/styles, `app.js` state/planning/ranking/timer, `drills.js` the curated catalog, `sw.js` the offline shell, and `manifest.webmanifest` the installation metadata. `BRAND` in `app.js` controls runtime branding. The document title and manifest provide the static startup/install labels. No build step is required.
+`index.html` owns the shell, `app-ui.css` the app styling, `app-ui.js` navigation and presentation, `app.js` state/planning/ranking/timer, `drills.js` the curated catalog, `sw.js` the offline shell, and `manifest.webmanifest` the installation metadata. `BRAND` in `app.js` controls runtime branding. The document title and manifest provide the static startup/install labels. No build step is required.
