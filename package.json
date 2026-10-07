@@ -1,6 +1,6 @@
 {
   "name": "trainr",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "scripts": {
     "test": "node test.cjs",
     "start": "node serve.cjs",
