@@ -1,6 +1,6 @@
 {
-  "name": "keeperboard",
-  "version": "0.1.0",
+  "name": "trainr",
+  "version": "0.2.0",
   "scripts": {
     "test": "node test.cjs",
     "start": "node serve.cjs"
@@ -8,5 +8,5 @@
   "devDependencies": {
     "@playwright/test": "^1.63.0"
   },
-  "private": "true"
+  "private": true
 }
