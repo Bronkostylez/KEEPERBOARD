@@ -7,7 +7,7 @@ const SCENE_GROUPS={
 const SETUP_KIND=Object.fromEntries(Object.entries(SCENE_GROUPS).flatMap(([kind,ids])=>ids.map(id=>[id,kind])));
 function drillPitch(e,large=false,step=0){
  const kind=e.custom?'custom':SETUP_KIND[e.id]||'custom';
- const player=(x,y,n,op=false)=>`<g class="pitch-player ${op?'opponent':''}"><circle cx="${x}" cy="${y}" r="10"/><text x="${x}" y="${y+3}">${n}</text></g>`;
+ const player=(x,y,n,op=false)=>`<g class="pitch-player ${n==='K'?'goalkeeper':op?'opponent':''}"><circle cx="${x}" cy="${y}" r="10"/><text x="${x}" y="${y+3}">${n}</text></g>`;
  const cone=(x,y)=>`<path class="setup-cone" d="M${x-4} ${y+4}l4-9 4 9z"/>`;
  const gate=(x,y)=>cone(x,y-12)+cone(x,y+12);
  const goal=(x,y)=>`<rect class="setup-goal" x="${x}" y="${y}" width="10" height="25" rx="2"/>`;
