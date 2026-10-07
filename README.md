@@ -2,7 +2,7 @@
 
 A local football training planner for outfield coaches, goalkeeper coaches and mixed sessions. Pick your age group and weekly slots, browse a small sourced library, then build a session that fits your time and players. German interface, no account, backend, analytics or player records.
 
-The repository still has its original KEEPERBOARD name. The app is TRAINR. It is private and **not deployed**: the repository link is source code, not a working phone app.
+The repository still has its original KEEPERBOARD name. The app is TRAINR. This repository and its commit history are public. Open the live app at https://bronkostylez.github.io/KEEPERBOARD/. Your training data stays in your browser, not in the repository.
 
 ## Stage 3: app interface
 
@@ -22,7 +22,7 @@ No Community Hub, accounts, player imports, player names or payments. No Spieler
 
 ## Run locally
 
-Install Node.js, download this private repository, extract it, and run in that folder:
+Install Node.js, download this repository, extract it, and run in that folder:
 
 ```sh
 node serve.cjs
@@ -30,7 +30,7 @@ node serve.cjs
 
 Open **http://localhost:8765**. Stop with Ctrl+C. No runtime dependencies; Node only serves the app locally. Do not double-click the HTML file if you need offline/PWA behavior.
 
-A phone installation needs an approved private HTTPS origin. Hosting has not been set up. A computer's LAN HTTP address does not provide the same secure-context behavior as localhost on the same device. Once privately hosted with permission, use Chrome install on Android or Safari > Share > Add to Home Screen on iPhone. Browser support varies; there is no App Store build.
+Open https://bronkostylez.github.io/KEEPERBOARD/ on your phone. On Android, use Chrome's Install app or Add to Home screen option; on iPhone, use Safari > Share > Add to Home Screen. Load once online before using offline. Browser support varies; there is no App Store build.
 
 ## Library standards
 
@@ -61,7 +61,7 @@ The Playwright smoke suite uses Chrome at `/usr/bin/google-chrome`; set `CHROME_
 
 Tested on Chrome/Linux: onboarding including invalid day/time input, all 36 drills, profile/category/age/search filters, ranking reasons, group and material counts, duration overrun, actual drag/drop add and reorder, button fallback, timer pause/next, own exercises, multiple plans, persistence, text/CSV/PDF output, validated backup/restore/rejection, offline reload and changes, and 390px mobile/1280px desktop views. No JavaScript page errors. Onboarding, Today, drill cards, mobile planner, training screen, desktop and PDF were visually inspected. The small field motifs on drill cards are decorative, not tactical drill diagrams. Stage 2 backups and stored sessions remain compatible.
 
-Not tested on a physical phone, Safari installation, Windows, screen-locked sound, or deployed HTTPS. No claim of a live/installable phone link yet.
+The deployed HTTPS app was tested in a fresh mobile-size Chrome browser: onboarding, drills, planning, timer state, service worker and offline reload passed. Not tested on a physical phone, Safari installation, Windows or screen-locked sound.
 
 ## Structure
 
