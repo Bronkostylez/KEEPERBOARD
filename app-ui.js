@@ -42,7 +42,7 @@ $('profileButton').onclick=()=>view('info');$('homePlan').onclick=()=>view('plan
 $('homeTimeline').onclick=ev=>{const b=ev.target.closest('[data-home-block]');if(!b)return;timerIndex=Number(b.dataset.homeBlock);resetTimer();render();view('live');};
 $('jumpPlan').onclick=()=>view('planner');
 document.querySelector('[data-tab=board]').onclick=()=>view('library');document.querySelector('[data-tab=info]').onclick=()=>view('info');
-const originalAdd=add;add=function(id){originalAdd(id);const b=document.querySelector('[data-view=planner]');b.animate?.([{transform:'scale(1)'},{transform:'scale(1.08)'},{transform:'scale(1)'}],{duration:250});};
+const originalAdd=add;add=function(id){originalAdd(id);const b=document.querySelector('[data-view=planner]');if(typeof reduced!=='function'||!reduced())b.animate?.([{transform:'scale(1)'},{transform:'scale(1.08)'},{transform:'scale(1)'}],{duration:250});};
 // A view switch never resets a running timer or changes stored plans.
 render();if(!state.profile){document.body.classList.add('setting-up');$('homeView').classList.add('hidden');$('liveView').classList.add('hidden');}else view('home',{scroll:false});
 
