@@ -52,3 +52,9 @@ body.scrolled .bar-title{opacity:1;transform:translate(-50%,0)}
  .bar-title{transition:none}
 }
 @media print{header{position:static}.bar-title{display:none}.tab-glider{display:none}}
+
+/* V17: keep home content in normal flow, never under its primary action. */
+@media(max-width:899px){.home-action{position:relative;bottom:auto;margin-top:18px}#catalogNotice{margin-bottom:18px}#detailDialog .detail-bottom{position:sticky;bottom:-18px;background:var(--paper);padding:12px 0;z-index:8}}
+.coach-tools{margin:20px 0;padding:18px;background:#ecf2dd;border-radius:20px}.coach-tools h3{margin-top:0}.coach-tools textarea{width:100%;min-height:90px}.coach-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.coach-feedback{margin:12px 0;padding:12px;border-radius:12px;background:#fff}.coach-tools button{margin-top:8px}.coach-variants{border-top:1px solid #dde3d4;padding-top:14px}.coach-variants p{line-height:1.5}@media(max-width:380px){.coach-grid{grid-template-columns:1fr}}@media print{.coach-tools{display:none}}
+/* Avoid the compact title overlapping status/version controls on narrow phones. */
+@media(max-width:599px){.bar-title{display:none}.coach-tools{scroll-margin-top:90px}.coach-tools summary{padding:10px 0}}
