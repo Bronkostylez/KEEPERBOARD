@@ -30,3 +30,6 @@ const checklist=document.createElement('details');checklist.id='materialChecklis
 const checkRender=render;render=function(){checkRender();$('checkItems').innerHTML=Object.entries(requirements()).map(([n,c],i)=>`<label class="toggle-row"><input type="checkbox" style="width:auto"> ${materialType(n)[1]} ${c} ${esc(n)}</label>`).join('')||'Noch keine Übungen.';};
 const profileSafety=document.createElement('p');profileSafety.className='simple-tip';profileSafety.textContent='Backup sichert jetzt auch eigene Animationen und Varianten. Browserdaten nicht löschen. Ein Backup enthält keine Merkliste oder Anzeigeeinstellungen.';$('export').before(profileSafety);
 render();
+
+// V15 catalog change is explicit; IDs, user data and existing block minutes are unchanged.
+const catalogNote=document.createElement('section');catalogNote.className='notice';catalogNote.id='catalogNotice';catalogNote.innerHTML='<strong>V15: Alle 100 Übungen fachlich überarbeitet.</strong><p>Aufbau, Spielerzahlen und einige Namen haben sich geändert. Alte Pläne behalten ihre Übungs-IDs und Blockminuten, zeigen aber die überarbeiteten Inhalte. Prüfe Material, Gruppen und deine eigenen Varianten vor dem nächsten Training. Eigene Übungen bleiben unverändert.</p>'; $('homeStats').after(catalogNote);
