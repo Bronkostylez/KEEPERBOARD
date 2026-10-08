@@ -12,7 +12,8 @@ function cardPump(){if($('detailDialog').open){for(const tl of cardTL.values())t
   const run=()=>{if(!cardTL.has(scene)||!v8Ok())return;tl.seek(0);tl.play(1);tl.anims[0].onfinish=()=>{tl.restart=setTimeout(run,1800);};};run();}}
 const cardObserver=new IntersectionObserver(entries=>{for(const en of entries){const s=en.target;if(en.isIntersecting&&en.intersectionRatio>=.5)cardVisible.add(s);else{cardVisible.delete(s);cardStop(s);}}cardPump();},{threshold:[0,.5]});
 const cardSeen=new WeakSet();
-function cardScan(){document.querySelectorAll('#cards .pitch-scene').forEach(s=>{if(cardSeen.has(s))return;cardSeen.add(s);cardObserver.observe(s);});}
+const cardObserved=new Set();
+function cardScan(){for(const s of cardObserved)if(!s.isConnected){cardObserver.unobserve(s);cardObserved.delete(s);cardVisible.delete(s);cardStop(s);}document.querySelectorAll('#cards .pitch-scene').forEach(s=>{if(cardSeen.has(s))return;cardSeen.add(s);cardObserved.add(s);cardObserver.observe(s);});}
 new MutationObserver(cardScan).observe($('cards'),{childList:true});cardScan();
 function cardsOff(){for(const s of [...cardTL.keys()])cardStop(s);}
 // ---- Detail: full run-through with timeline, speed and step jumps.
