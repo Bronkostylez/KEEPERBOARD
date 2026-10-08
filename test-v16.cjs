@@ -4,7 +4,7 @@ const {chromium}=require('@playwright/test'),assert=require('node:assert/strict'
 const c=await b.newContext({viewport:{width:390,height:844},hasTouch:true,reducedMotion:'reduce'}),p=await c.newPage(),errs=[];p.on('pageerror',e=>errs.push(e.message));
 await p.goto(base||'http://127.0.0.1:8877');
 for(let i=0;i<3;i++)await p.click('#setupNext');
-assert.equal(await p.evaluate(()=>APP_VERSION),'16.1.0');
+assert.equal(await p.evaluate(()=>APP_VERSION),'17.0.0');
 // App shell: fixed top bar, attached bottom tab bar with icons and glider.
 const header=await p.locator('header').boundingBox();assert.equal(header.y,0,'header pinned to top');
 const nav=await p.locator('#mainNav').boundingBox();assert(Math.abs(nav.y+nav.height-844)<2,'tab bar attached to bottom edge');
@@ -44,9 +44,9 @@ assert(css.includes('safe-area-inset-bottom'),'safe-area handling present');
 assert(css.includes('sheet-in'),'sheet animation present');
 // Offline: new cache serves the app and data.
 await p.waitForFunction(()=>navigator.serviceWorker.controller);
-await p.waitForFunction(async()=>(await caches.keys()).includes('keeperboard-v16.1.0'));
+await p.waitForFunction(async()=>(await caches.keys()).includes('keeperboard-v17.0.0'));
 await c.setOffline(true);await p.reload();await p.waitForSelector('#mainNav');
-assert.equal(await p.evaluate(()=>APP_VERSION),'16.1.0');
+assert.equal(await p.evaluate(()=>APP_VERSION),'17.0.0');
 assert.equal(await p.evaluate(()=>localStorage.getItem('trainr-v2')),before,'saved data intact offline');
 await c.setOffline(false);
 assert.deepEqual(errs,[],'no page errors: '+errs.join(' | '));
