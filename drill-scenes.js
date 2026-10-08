@@ -22,7 +22,7 @@ function drillPitch(e,large=false,step=0){
  case 'gates':objects=gate(90,60)+gate(180,130)+gate(255,60);ps=[[50,130,'1'],[215,95,'2']];route='M50 130 Q60 60 110 60 L180 130';name='Freie Hütchentore';break;
  case 'lanes':objects=zone(55,48,210,32,'GASSE')+(e.id==='v5-crossroads'?zone(140,27,32,130,''):zone(55,115,210,32,'GASSE'));ps=[[45,65,'1'],[275,135,'2']];route='M45 65 L275 65';name='Breite Wege';break;
  case 'corners':objects=zone(30,28,50,30,'A')+zone(240,28,50,30,'B')+zone(30,132,50,30,'C')+zone(240,132,50,30,'D');ps=[[140,90,'1'],[180,110,'2']];route='M140 90 L55 42';name='Vier bezeichnete Ecken';break;
- case 'duel':ps=[[65,95,'1'],[205,95,'V',true]];objects=e.id==='v5-twoends'?gate(280,55)+gate(280,140):'<path class="setup-line" d="M35 25v140 M285 25v140"/>';route='M65 95 L160 70 L280 70';name='Angriff & Verteidigung';break;
+ case 'duel':if(e.id==='v5-shield'){ps=[[150,95,'1'],[175,105,'V',true]];objects=zone(85,40,150,110,'SCHÜTZEN');name='Ball abschirmen · Partnerdruck';route='M150 95 L125 75';break;}ps=[[65,95,'1'],[205,95,'V',true]];objects=e.id==='v5-twoends'?gate(280,55)+gate(280,140):'<path class="setup-line" d="M35 25v140 M285 25v140"/>';route='M65 95 L160 70 L280 70';name='Angriff & Verteidigung';break;
  case 'pairdribble':ps=[[90,70,'1'],[65,120,'2']];route='M90 70 Q160 40 245 100';name='Zwei Spieler · Abstand';break;
  case 'choice':objects=gate(265,55)+gate(265,140);ps=[[65,95,'1']];route='M65 95 L265 55';name='Zwei freie Ausgänge';break;
  case 'pairgate':pair();if(e.type==='keeper')ps[0][2]='K';objects=gate(160,95);if(e.id==='left-right')objects+=gate(160,45);name='Paar & Hütchentor';break;
