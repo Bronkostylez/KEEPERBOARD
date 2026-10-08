@@ -18,27 +18,28 @@ function plan(kind,e,ps){
  const balls=[['b0',...own[0]]];let events=[];const ball1=()=>balls.push(['b1',...own[1]]);
  const pairSet=()=>{};
  switch(kind){
- case 'islands':ball1();events=[ev([D(0,108,55),D(1,226,85)],.7),ev([D(0,146,136),D(1,160,62)],.7),ev([D(0,224,84),D(1,105,52)],.6)];break;
+ case 'islands':if(e.id==='v5-islandpair'){events=[ev([D(0,108,55),R(1,160,70)],.4),ev([P('b0',1)],.4),ev([D(1,225,85,'dribble','b0'),R(0,200,125)],.5)];break;}ball1();events=[ev([D(0,108,55),D(1,226,85)],.7),ev([D(0,146,136),D(1,160,62)],.7),ev([D(0,224,84),D(1,105,52)],.6)];break;
  case 'signal':ball1();balls.push(['b2',...own[2]]);events=[ev([D(0,120,118),D(1,200,70),D(2,190,150)],.2),ev([D(0,150,100,'walk'),D(1,240,100,'walk'),D(2,150,140,'walk')],1),ev([D(0,92,62),D(1,170,122),D(2,252,112)],.5)];break;
  case 'transport':balls.push(['b1',...own[1]]);events=[ev([D(0,250,55),D(1,252,135)],.7),ev([R(0,150,48),R(1,150,148)],.3),ev([R(0,65,92),R(1,65,122)],.4)];break;
  case 'gates':ball1();events=[ev([D(0,62,60),D(1,215,130)],.3),ev([D(0,125,60),D(1,148,130)],.5),ev([D(0,150,131),D(1,225,62)],.3),ev([D(0,212,131),D(1,288,60)],.5)];break;
  case 'lanes':ball1();events=[ev([D(0,255,64),D(1,65,131)],.6),ev([D(0,160,64),D(1,160,131)],.4),ev([D(0,160,125),D(1,160,70)],.6)];break;
  case 'corners':ball1();events=[ev([D(0,55,44),D(1,265,146)],.6),ev([D(0,265,44),D(1,55,146)],.6),ev([D(0,55,146),D(1,265,44)],.6)];break;
- case 'pairdribble':ball1();events=[ev([D(0,170,55),D(1,130,102)],.3),ev([D(0,250,100),D(1,205,82)],.6),ev([D(1,150,142),D(0,205,125)],.3),ev([D(1,70,125),D(0,125,138)],.5)];break;
+ case 'pairdribble':if(e.id==='v5-shadow'){events=[ev([D(0,170,60),R(1,130,102)],.4),ev([D(0,245,95),R(1,205,90)],.6)];break;}if(e.id==='v5-partner'){ball1();events=[ev([P('b0',1),P('b1',0)],.6),ev([D(0,160,50,'dribble','b1'),D(1,230,140,'dribble','b0')],.8)];break;}ball1();events=[ev([D(0,170,55),D(1,130,102)],.3),ev([D(0,250,100),D(1,205,82)],.6),ev([D(1,150,142),D(0,205,125)],.3),ev([D(1,70,125),D(0,125,138)],.5)];break;
  case 'choice':events=[ev([D(0,150,95)],.6),ev([D(0,235,55)],.2),ev([D(0,290,55)],.6),ev([D(0,150,95)],.2),ev([D(0,235,140)],.2),ev([D(0,290,140)],.5)];break;
- case 'pairgate':events=[ev([P('b0',1)],.5),ev([P('b0',0),R(1,243,100,'walk')],.4),ev([D(0,70,50),R(1,250,50)],.3),ev([P('b0',1)],.5),ev([P('b0',0)],.5)];break;
+ case 'pairgate':if(e.id==='v5-kdistance'){events=[ev([P('b0',1,'roll')],.6),ev([P('b0',0,'roll')],.6)];break;}events=[ev([P('b0',1)],.5),ev([P('b0',0),R(1,243,100,'walk')],.4),ev([D(0,70,50),R(1,250,50)],.3),ev([P('b0',1)],.5),ev([P('b0',0)],.5)];break;
  case 'pairgoal':events=[ev([P('b0',1)],.4),ev([P('b0',0)],.4),ev([P('b0',1)],.4),ev([D(1,252,95,'dribble','b0')],.25),ev([S('b0',293,95)],.8)];break;
  case 'receive':events=[ev([P('b0',1)],.4),ev([D(1,228,95,'dribble','b0')],.5),ev([D(1,226,50,'dribble','b0')],.2),ev([D(1,290,50,'dribble','b0')],.6)];break;
  case 'triangle':events=[ev([P('b0',1),R(0,80,128)],.3),ev([P('b0',2),R(1,148,60)],.3),ev([P('b0',0),R(2,240,150)],.3),ev([P('b0',1),R(0,70,140)],.3),ev([P('b0',2)],.5)];break;
- case 'square':events=[ev([P('b0',1),R(0,230,52)],.3),ev([P('b0',2),R(1,250,120)],.3),ev([P('b0',3),R(2,90,145)],.3),ev([P('b0',0),R(3,90,60)],.5)];break;
+ case 'square':if(e.id==='v5-pairswitch'){ball1();events=[ev([P('b0',1),P('b1',3)],.6),ev([R(0,255,45),R(1,255,145),R(2,65,145),R(3,65,45)],.7)];break;}events=[ev([P('b0',1),R(0,230,52)],.3),ev([P('b0',2),R(1,250,120)],.3),ev([P('b0',3),R(2,90,145)],.3),ev([P('b0',0),R(3,90,60)],.5)];break;
  case 'wall':events=[ev([P('b0',1)],.3),ev([R(0,130,100)],.2),ev([P('b0',0)],.2),ev([D(0,245,85,'dribble','b0')],.6)];break;
  case 'linepass':events=[ev([P('b0',1)],.3),ev([P('b0',2)],.3),ev([P('b0',1),R(0,70,95)],.3),ev([P('b0',0)],.5)];break;
  case 'rondo':{const ids=mine.map(p=>p.i);let at=0;events=[];for(let n=0;n<6;n++){const to=ids[(at+1+(n%2))%ids.length];const bx=ps[to][0],by=ps[to][1];events.push(ev([P('b0',to),...opp.map((o,k)=>R(o.i,clamp(o.x+(bx-o.x)*.55,45,285),clamp(o.y+(by-o.y)*.55,35,160),'jog'))],.35));at=ids.indexOf(to);}break;}
  case 'targets':events=[ev([P('b0',1)],.4),ev([R(1,265,62,'walk')],.1),ev([P('b0',0)],.4),ev([R(0,55,130,'walk'),P('b0',1)],.5)];break;
  case 'finish':{const two=ps.length&&(e.id==='finish'||e.id==='v5-choosefinish');events=[ev([D(0,140,112)],.2),ev([D(0,192,100)],.2),ev([S('b0',293,two?97:95)],.8),ev([R(0,280,98)],.2),ev([D(0,70,two?150:140,'dribble','b0')],.5)];balls[0]=['b0',...own[0]];break;}
- case 'passfinish':{balls[0]=['b0',ps[1][0]+OFF[0],ps[1][1]+OFF[1]];events=[ev([P('b0',0),R(0,110,125)],.2),ev([D(0,190,105,'dribble','b0')],.2),ev([S('b0',293,95)],.8)];break;}
+ case 'passfinish':{if(e.id==='v5-returnfinish'){events=[ev([P('b0',1)],.3),ev([R(0,135,105)],.2),ev([P('b0',0)],.3),ev([D(0,205,95,'dribble','b0')],.2),ev([S('b0',293,95)],.8)];break;}balls[0]=['b0',ps[1][0]+OFF[0],ps[1][1]+OFF[1]];events=[ev([P('b0',0),R(0,110,125)],.2),ev([D(0,190,105,'dribble','b0')],.2),ev([S('b0',293,95)],.8)];break;}
+ case 'duel':events=[ev([D(0,140,95),R(1,175,95)],.3),ev([D(0,175,55),R(1,195,70)],.2),ev([D(0,285,55),R(1,248,66)],.8)];break;
  case 'game':case 'zones':case 'lines':case 'neutral':case 'fullgame':{
-   const a=mine,o=opp,kA=A.find(p=>p.l==='K'&&!p.op),kB=A.find(p=>p.l==='K'&&p.op),N=A.find(p=>p.l==='N');
+   if(e.id==='deep'){events=[ev([P('b0',6)],.4),ev([R(1,230,65)],.3),ev([P('b0',1)],.4),ev([S('b0',293,55)],.8)];break;}const a=mine,o=opp,kA=A.find(p=>p.l==='K'&&!p.op),kB=A.find(p=>p.l==='K'&&p.op),N=A.find(p=>p.l==='N');
    const a0=a[0],a1=a[1]||a[0],o0=o[0],o1=o[1]||o[0];if(!a0)break;balls[0]=['b0',a0.x+OFF[0],a0.y+OFF[1]];
    const E=[];E.push(ev([D(a0.i,150,95,'dribble','b0'),...(o0?[R(o0.i,190,88)]:[])],.2));
    if(N&&kind==='neutral'){E.push(ev([P('b0',N.i),...(o0?[R(o0.i,205,100)]:[])],.3));E.push(ev([P('b0',a1.i),R(a1.i,210,76)],.3));}
@@ -48,10 +49,10 @@ function plan(kind,e,ps){
    if(kB){E.push(ev([S('b0',kB.x-14,kB.y+5),R(kB.i,kB.x-4,kB.y+8,'sprint')],.7));E.push(ev([P('b0',o0?o0.i:kB.i)],.4));}
    else E.push(ev([S('b0',293,95)],.8));
    events=E;break;}
- case 'overload':{balls[0]=['b0',...own[1]];events=[ev([D(1,140,95,'dribble','b0'),R(0,150,55),R(3,182,82),R(4,182,118)],.2),ev([P('b0',2),R(2,200,138)],.25),ev([R(0,215,52)],.1),ev([S('b0',293,138)],.8)];break;}
+ case 'overload':{if(e.min===3){events=[ev([D(0,140,75,'dribble','b0'),R(1,160,135),R(2,180,90)],.3),ev([P('b0',1)],.3),ev([S('b0',293,138)],.8)];break;}balls[0]=['b0',...own[1]];events=[ev([D(1,140,95,'dribble','b0'),R(0,150,55),R(3,182,82),R(4,182,118)],.2),ev([P('b0',2),R(2,200,138)],.25),ev([R(0,215,52)],.1),ev([S('b0',293,138)],.8)];break;}
  case 'keeperball':events=[ev([D(0,125,95,'walk')],.5),ev([P('b0',1,'toss')],.5),ev([R(1,222,95,'walk'),P('b0',0)],.4),ev([P('b0',1)],.5)];break;
- case 'keepermove':balls[0]=['b0',...own[0]];events=[ev([R(1,250,70,'shuffle')],.3),ev([R(1,250,120,'shuffle')],.3),ev([R(1,250,95,'shuffle')],.6),ev([P('b0',1,'toss')],.9)];break;
- case 'keepercatch':events=[ev([R(1,246,84,'shuffle')],.3),ev([P('b0',1,'roll'),R(1,250,95,'shuffle')],.9),ev([P('b0',0,'toss')],.6)];break;
+ case 'keepermove':if(e.id==='v5-kready'){events=[ev([R(1,225,95,'walk')],.6),ev([P('b0',1,'toss')],.9),ev([P('b0',0,'roll')],.6)];break;}balls[0]=['b0',...own[0]];events=[ev([R(1,250,70,'shuffle')],.3),ev([R(1,250,120,'shuffle')],.3),ev([R(1,250,95,'shuffle')],.6),ev([P('b0',1,'toss')],.9)];break;
+ case 'keepercatch':{if(e.id==='v5-ksoft'){balls[0]=['b0',...own[1]];events=[ev([P('b0',0,'pass')],.7),ev([P('b0',1,'toss')],.9),ev([P('b0',0,'roll')],.5)];break;}const mode=['catch','v5-kroll'].includes(e.id)?'roll':'toss';events=[ev([R(1,246,84,'shuffle')],.3),ev([P('b0',1,mode),R(1,250,95,'shuffle')],.9),ev([P('b0',0,'roll')],.6)];break;}
  case 'keeperfloor':balls[0]=['b0',200,100];events=[ev([R(0,186,99,'walk')],.5),ev([R('b0',178,104,'walk')],.9)];break;
  case 'keeperroll':balls[0]=['b0',108,97];events=[ev([R(0,98,96,'walk')],.4),ev([R('b0',78,99,'walk')],.8),ev([S('b0',255,55,'roll')],.6),ev([R(0,76,96,'walk')],.5)];break;
  case 'keeperangle':balls[0]=['b0',...own[1]];events=[ev([D(1,70,135,'walk','b0'),R(0,262,109,'shuffle')],.4),ev([D(1,70,55,'walk','b0'),R(0,262,81,'shuffle')],.4),ev([D(1,70,95,'walk','b0'),R(0,262,95,'shuffle')],.4),ev([P('b0',0,'toss')],.8)];break;
