@@ -4,7 +4,7 @@ const BASE=process.env.BASE_URL;
 const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
 try{const c=await b.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),p=await c.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 await p.goto(url);for(let i=0;i<3;i++)await p.click('#setupNext');await p.waitForFunction(()=>document.querySelector('#homeView')&&!document.querySelector('#homeView').classList.contains('hidden'));
-assert.equal(await p.locator('#versionBadge').innerText(),'V15 · 15.0.0');
+assert.equal(await p.locator('#versionBadge').innerText(),'V16.1 · 16.1.0');
 // 1. every drill: full choreography, in bounds, all steps visited in order, ends in a settled state.
 const all=await p.evaluate(()=>{const div=document.createElement('div');document.body.append(div);const bad=[],stats=[];for(const e of SEED){const n=stepsFor(e).length;div.innerHTML=drillPitch(e,true,0);const sc=div.querySelector('.pitch-scene'),tl=SceneMotion.compile(sc,n,{camera:true});if(!tl){bad.push(e.id+': no choreography');continue;}
  const seen=[];for(let t=0;t<=tl.total;t+=100){const s=tl.stepAt(t);if(seen[seen.length-1]!==s)seen.push(s);}if(seen.join()!==[...Array(n).keys()].join())bad.push(e.id+': steps '+seen);
